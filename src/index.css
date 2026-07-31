@@ -1,0 +1,24 @@
+@import 'tailwindcss';
+
+/* Manual theme toggle: `dark:` variants apply when data-theme="dark" is set
+   on <html>, instead of only following prefers-color-scheme. */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+:root {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+}
