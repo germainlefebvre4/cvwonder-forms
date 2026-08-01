@@ -1,5 +1,14 @@
 import type { FieldDescriptor, JsonObject, JsonValue, Path } from './types'
 
+/** True for '', null, undefined, an empty array, or an object whose properties are all empty - the
+ * same notion of "no content" the YAML serializer uses when it omits a value from the output. */
+export function isEmptyValue(value: JsonValue | undefined): boolean {
+  if (value === '' || value == null) return true
+  if (Array.isArray(value)) return value.every(isEmptyValue)
+  if (typeof value === 'object') return Object.values(value).every(isEmptyValue)
+  return false
+}
+
 export function getAtPath(document: JsonValue, path: Path): JsonValue | undefined {
   let current: JsonValue | undefined = document
   for (const segment of path) {

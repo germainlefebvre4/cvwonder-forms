@@ -22,7 +22,7 @@ export function highlightYamlLine(line: string): string {
   return (
     escapeHtml(indent) +
     dashHtml +
-    `<span class="text-violet-700 dark:text-violet-400">${escapeHtml(key)}</span>` +
+    `<span class="text-brand-700 dark:text-brand-400">${escapeHtml(key)}</span>` +
     `<span class="text-neutral-400 dark:text-neutral-500">${colon}</span>` +
     `<span class="text-emerald-700 dark:text-emerald-400">${escapeHtml(rest)}</span>`
   )

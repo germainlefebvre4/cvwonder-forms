@@ -8,6 +8,7 @@ import { ExportButton } from './components/io/ExportButton'
 import { ValidationSummary } from './components/layout/ValidationSummary'
 import { ThemeToggle } from './components/layout/ThemeToggle'
 import { LanguageSwitch } from './components/layout/LanguageSwitch'
+import { SectionNav } from './components/layout/SectionNav'
 
 function App() {
   const { t, i18n } = useTranslation()
@@ -37,7 +38,8 @@ function App() {
           <ThemeToggle />
         </div>
       </header>
-      <main className="mx-auto grid max-w-7xl grid-cols-1 gap-6 p-4 sm:p-6 lg:grid-cols-2">
+      <main className="mx-auto grid max-w-7xl grid-cols-1 gap-6 p-4 sm:p-6 lg:grid-cols-[13rem_1fr_1fr]">
+        <SectionNav />
         <SchemaFormRenderer />
         <div className="lg:sticky lg:top-6 lg:h-[calc(100vh-3rem)] lg:self-start">
           <h2 className="mb-2 text-sm font-semibold text-neutral-600 dark:text-neutral-400">{t('nav.preview')}</h2>

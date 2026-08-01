@@ -1,6 +1,6 @@
 # AGENTS.md
 
-## Goal
+## Objective
 
 This project aims to facilitate the writing of CV Wonder YAML files by human.
 
@@ -45,3 +45,15 @@ The YAML schema for CV Wonder is located at https://raw.githubusercontent.com/ge
 ### Data Format
 
 * YAML for the data format.
+
+## Appendix
+
+### Spoken Languages
+
+English is the main language.
+
+Everything is written in English:
+
+* Code
+* Documentation
+* User interface

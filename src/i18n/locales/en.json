@@ -10,6 +10,10 @@
   "actions.export": "Export YAML",
 
   "nav.preview": "YAML preview",
+  "nav.sections": "Form sections",
+  "nav.sectionStatus.empty": "Empty section",
+  "nav.sectionStatus.filled": "Filled section",
+  "nav.sectionStatus.error": "Section with an error",
 
   "theme.light": "Light",
   "theme.dark": "Dark",

@@ -10,6 +10,10 @@
   "actions.export": "Exporter en YAML",
 
   "nav.preview": "Aperçu YAML",
+  "nav.sections": "Sections du formulaire",
+  "nav.sectionStatus.empty": "Section vide",
+  "nav.sectionStatus.filled": "Section renseignée",
+  "nav.sectionStatus.error": "Section contenant une erreur",
 
   "theme.light": "Clair",
   "theme.dark": "Sombre",

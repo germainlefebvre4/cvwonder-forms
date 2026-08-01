@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useUiPrefsStore, type Language } from '../../store/uiPrefs'
 
 const itemClass =
-  'cursor-pointer rounded px-2 py-1 text-sm outline-none data-[highlighted]:bg-violet-100 dark:data-[highlighted]:bg-violet-950'
+  'cursor-pointer rounded px-2 py-1 text-sm outline-none data-[highlighted]:bg-brand-100 dark:data-[highlighted]:bg-brand-950'
 
 export function LanguageSwitch() {
   const { t } = useTranslation()

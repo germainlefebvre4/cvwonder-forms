@@ -32,10 +32,10 @@ export function SliderField({ descriptor, path, errors }: SliderFieldProps) {
           onValueChange={([next]) => setValue(path, next)}
         >
           <Slider.Track className="relative h-1.5 grow rounded-full bg-neutral-200 dark:bg-neutral-700">
-            <Slider.Range className="absolute h-full rounded-full bg-violet-500" />
+            <Slider.Range className="absolute h-full rounded-full bg-brand-500 dark:bg-brand-400" />
           </Slider.Track>
           <Slider.Thumb
-            className="block h-4 w-4 rounded-full bg-violet-600 shadow focus:outline-none focus:ring-2 focus:ring-violet-400"
+            className="block h-4 w-4 rounded-full bg-brand-600 shadow focus:outline-none focus:ring-2 focus:ring-brand-400 dark:bg-brand-400"
             aria-label={t(fieldLabelKey(descriptor.schemaPath))}
           />
         </Slider.Root>

@@ -14,7 +14,7 @@ export function ThemeToggle() {
       <Switch.Root
         checked={isDark}
         onCheckedChange={(checked) => setTheme(checked ? 'dark' : 'light')}
-        className="relative h-5 w-9 rounded-full bg-neutral-300 outline-none data-[state=checked]:bg-violet-600 dark:bg-neutral-700"
+        className="relative h-5 w-9 rounded-full bg-neutral-300 outline-none data-[state=checked]:bg-brand-600 dark:bg-neutral-700 dark:data-[state=checked]:bg-brand-400"
       >
         <Switch.Thumb className="block h-4 w-4 translate-x-0.5 rounded-full bg-white transition-transform data-[state=checked]:translate-x-[18px]" />
       </Switch.Root>

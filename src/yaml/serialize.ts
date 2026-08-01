@@ -1,9 +1,10 @@
 import { stringify } from 'yaml'
+import { isEmptyValue } from '../schema/pathUtils'
 import type { JsonValue } from '../schema/types'
 
 /** Recursively drops empty strings, empty arrays/objects, null and undefined. */
 function pruneEmpty(value: JsonValue): JsonValue | undefined {
-  if (value === '' || value == null) return undefined
+  if (value == null || isEmptyValue(value)) return undefined
   if (Array.isArray(value)) {
     const items = value.map(pruneEmpty).filter((item): item is JsonValue => item !== undefined)
     return items.length > 0 ? items : undefined

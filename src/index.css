@@ -4,6 +4,21 @@
    on <html>, instead of only following prefers-color-scheme. */
 @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
+/* Accent scale sourced from cvwonder.fr's own brand blue (extracted from its
+   published stylesheet: primary #3578e5, with lightest/lighter/dark/darkest
+   and contrast-background/foreground siblings), replacing the previous
+   generic Tailwind violet accent. */
+@theme {
+  --color-brand-50: #ebf2fc;
+  --color-brand-100: #c2d7f7;
+  --color-brand-300: #9abcf2;
+  --color-brand-400: #72a1ed;
+  --color-brand-500: #3578e5;
+  --color-brand-600: #306cce;
+  --color-brand-700: #2554a0;
+  --color-brand-950: #102445;
+}
+
 :root {
   color-scheme: light;
 }
