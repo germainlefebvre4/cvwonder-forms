@@ -38,7 +38,7 @@ function App() {
           <ThemeToggle />
         </div>
       </header>
-      <main className="mx-auto grid max-w-7xl grid-cols-1 gap-6 p-4 sm:p-6 lg:grid-cols-[13rem_1fr_1fr]">
+      <main className="mx-auto grid max-w-[100rem] grid-cols-1 gap-6 p-4 sm:p-6 lg:grid-cols-[13rem_minmax(0,1fr)_26rem] 2xl:grid-cols-[16rem_minmax(0,1fr)_26rem]">
         <SectionNav />
         <SchemaFormRenderer />
         <div className="lg:sticky lg:top-6 lg:h-[calc(100vh-3rem)] lg:self-start">
