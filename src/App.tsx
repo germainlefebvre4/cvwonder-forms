@@ -5,7 +5,6 @@ import { SchemaFormRenderer } from './components/form/SchemaFormRenderer'
 import { YamlPreview } from './components/preview/YamlPreview'
 import { ImportButton } from './components/io/ImportButton'
 import { ExportButton } from './components/io/ExportButton'
-import { ValidationSummary } from './components/layout/ValidationSummary'
 import { ThemeToggle } from './components/layout/ThemeToggle'
 import { LanguageSwitch } from './components/layout/LanguageSwitch'
 import { SectionNav } from './components/layout/SectionNav'
@@ -31,7 +30,6 @@ function App() {
           <p className="text-xs text-neutral-500 dark:text-neutral-400">{t('app.tagline')}</p>
         </div>
         <div className="flex flex-wrap items-center gap-3">
-          <ValidationSummary />
           <ImportButton />
           <ExportButton />
           <LanguageSwitch />

@@ -10,30 +10,40 @@ export function instancePathToPath(instancePath: string): Path {
   return instancePath.split('.').map((segment) => (/^\d+$/.test(segment) ? Number(segment) : segment))
 }
 
-/** Splits an instance path into its schema path (property keys only, for `fieldLabelKey`) and the
- * 1-based index of every repeatable entry it passes through, in the order encountered. */
-function parseInstancePath(instancePath: string): { schemaPath: string[]; entryIndices: number[] } {
+interface EntryLevel {
+  /** The array's own schema path at the point this index was encountered, e.g. `['career', 'missions']`. */
+  schemaPath: string[]
+  /** 1-based index of the entry within that array. */
+  index: number
+}
+
+/** Splits an instance path into its schema path (property keys only, for `fieldLabelKey`) and one
+ * `EntryLevel` per repeatable entry it passes through, in the order encountered. */
+function parseInstancePath(instancePath: string): { schemaPath: string[]; entryLevels: EntryLevel[] } {
   const schemaPath: string[] = []
-  const entryIndices: number[] = []
+  const entryLevels: EntryLevel[] = []
   for (const segment of instancePath.split('.')) {
     if (/^\d+$/.test(segment)) {
-      entryIndices.push(Number(segment) + 1)
+      entryLevels.push({ schemaPath: [...schemaPath], index: Number(segment) + 1 })
     } else {
       schemaPath.push(segment)
     }
   }
-  return { schemaPath, entryIndices }
+  return { schemaPath, entryLevels }
 }
 
-/** Human display label for an error's origin, e.g. "Carrière — entrée 2 › Nom de l'entreprise". */
+/** Human display label for an error's origin, e.g. "Carrière — Missions #1 › Poste". */
 export function errorOriginLabel(t: Translate, instancePath: string): string {
-  const { schemaPath, entryIndices } = parseInstancePath(instancePath)
-  const sectionLabel = t(fieldLabelKey(schemaPath.slice(0, 1)))
+  const { schemaPath, entryLevels } = parseInstancePath(instancePath)
   const fieldLabel = schemaPath.length > 1 ? t(fieldLabelKey(schemaPath)) : undefined
-  const parts = [
-    ...entryIndices.map((index) => t('errorSummary.entry', { index })),
-    ...(fieldLabel ? [fieldLabel] : []),
-  ]
+  const levelLabels = entryLevels.map((level) => `${t(fieldLabelKey(level.schemaPath))} #${level.index}`)
+  const parts = [...levelLabels, ...(fieldLabel ? [fieldLabel] : [])]
+
+  const sectionPath = schemaPath.slice(0, 1)
+  const sectionIsFirstLevel = entryLevels[0]?.schemaPath.join('.') === sectionPath.join('.')
+  if (sectionIsFirstLevel) return parts.join(' › ')
+
+  const sectionLabel = t(fieldLabelKey(sectionPath))
   return parts.length > 0 ? `${sectionLabel} — ${parts.join(' › ')}` : sectionLabel
 }
 

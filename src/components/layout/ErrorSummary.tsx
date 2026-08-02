@@ -8,6 +8,7 @@ export function ErrorSummary() {
   const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const entries = useErrorSummaryEntries()
+  const isValid = entries.length === 0
   // Set right before an entry activation closes the popover, so `onCloseAutoFocus` knows to leave
   // focus on the field we just moved it to instead of Radix's default of returning it to the trigger.
   const skipCloseAutoFocusRef = useRef(false)
@@ -23,17 +24,32 @@ export function ErrorSummary() {
   return (
     <Popover.Root open={open} onOpenChange={setOpen}>
       <Popover.Trigger
-        disabled={entries.length === 0}
-        aria-label={t('errorSummary.toggleLabel', { count: entries.length })}
-        className="flex items-center gap-2 rounded-full border border-red-300 bg-white px-3 py-1.5 text-sm font-medium text-red-600 shadow-sm outline-none disabled:cursor-default disabled:opacity-40 focus:ring-2 focus:ring-brand-400 enabled:hover:bg-red-50 dark:border-red-800 dark:bg-neutral-900 dark:text-red-400 dark:enabled:hover:bg-red-950"
+        disabled={isValid}
+        aria-label={isValid ? t('errorSummary.valid') : t('errorSummary.toggleLabel', { count: entries.length })}
+        className={
+          isValid
+            ? 'flex items-center gap-2 rounded-full border border-emerald-300 bg-white px-3 py-1.5 text-sm font-medium text-emerald-600 shadow-sm outline-none disabled:cursor-default dark:border-emerald-800 dark:bg-neutral-900 dark:text-emerald-400'
+            : 'flex items-center gap-2 rounded-full border border-red-300 bg-white px-3 py-1.5 text-sm font-medium text-red-600 shadow-sm outline-none disabled:cursor-default disabled:opacity-40 focus:ring-2 focus:ring-brand-400 enabled:hover:bg-red-50 dark:border-red-800 dark:bg-neutral-900 dark:text-red-400 dark:enabled:hover:bg-red-950'
+        }
       >
-        <span
-          aria-hidden="true"
-          className="flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-xs font-semibold text-white"
-        >
-          {entries.length}
+        {isValid ? (
+          <span
+            aria-hidden="true"
+            className="flex h-5 min-w-5 items-center justify-center rounded-full bg-emerald-500 px-1 text-xs font-semibold text-white"
+          >
+            ✓
+          </span>
+        ) : (
+          <span
+            aria-hidden="true"
+            className="flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-xs font-semibold text-white"
+          >
+            {entries.length}
+          </span>
+        )}
+        <span className="hidden lg:inline">
+          {isValid ? t('errorSummary.valid') : t('errorSummary.toggleLabel', { count: entries.length })}
         </span>
-        <span className="hidden lg:inline">{t('errorSummary.toggleLabel', { count: entries.length })}</span>
       </Popover.Trigger>
       <Popover.Portal>
         <Popover.Content

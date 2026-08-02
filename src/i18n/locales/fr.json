@@ -23,10 +23,6 @@
   "language.fr": "Français",
   "language.en": "Anglais",
 
-  "validation.summaryTitle": "Validation",
-  "validation.noErrors": "Le document est valide selon le schéma CV Wonder",
-  "validation.errorCount_one": "{{count}} erreur à corriger",
-  "validation.errorCount_other": "{{count}} erreurs à corriger",
   "validation.importParseError": "Impossible de lire ce fichier YAML : {{message}}",
   "validation.error.required": "Ce champ est obligatoire",
   "validation.error.format": "Doit être un format valide ({{format}})",
@@ -37,8 +33,8 @@
   "validation.error.generic": "Valeur invalide",
 
   "errorSummary.toggleLabel_one": "{{count}} erreur, afficher la liste",
-  "errorSummary.toggleLabel_other": "{{count}} erreurs, afficher la liste",
-  "errorSummary.entry": "entrée {{index}}",
+  "errorSummary.toggleLabel_other": "{{count}} erreurs afficher la liste",
+  "errorSummary.valid": "Le document est valide",
 
   "fields.company": "Entreprise",
   "fields.company.name": "Nom",
