@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { documentSections } from '../../schema'
 import { fieldLabelKey } from '../../i18n'
@@ -32,6 +32,8 @@ export function SectionNav() {
   const touchedSections = useCvDocumentStore((state) => state.touchedSections)
   const { errorsByPath } = useCvValidation()
   const [activeKey, setActiveKey] = useState<string>(documentSections[0]?.key ?? '')
+  const isProgrammaticScroll = useRef(false)
+  const clearScrollEndListener = useRef<() => void>(() => {})
 
   useEffect(() => {
     const elements = documentSections
@@ -68,6 +70,9 @@ export function SectionNav() {
       if (pendingFrame) return
       pendingFrame = requestAnimationFrame(() => {
         pendingFrame = 0
+        // While a click-triggered scroll animation is in flight, the clicked section stays
+        // highlighted instead of being overridden by the live (pre-settled) scroll position.
+        if (isProgrammaticScroll.current) return
         updateActive()
       })
     }
@@ -79,11 +84,20 @@ export function SectionNav() {
       if (pendingFrame) cancelAnimationFrame(pendingFrame)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
+      clearScrollEndListener.current()
     }
   }, [])
 
   function scrollToSection(sectionKey: string) {
     setActiveKey(sectionKey)
+    isProgrammaticScroll.current = true
+    clearScrollEndListener.current()
+    function onScrollEnd() {
+      isProgrammaticScroll.current = false
+      window.removeEventListener('scrollend', onScrollEnd)
+    }
+    window.addEventListener('scrollend', onScrollEnd)
+    clearScrollEndListener.current = () => window.removeEventListener('scrollend', onScrollEnd)
     document.getElementById(sectionElementId(sectionKey))?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
