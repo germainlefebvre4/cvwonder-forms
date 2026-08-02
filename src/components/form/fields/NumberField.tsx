@@ -1,7 +1,7 @@
-import { useId } from 'react'
 import type { IntegerFieldDescriptor, Path } from '../../../schema/types'
 import type { ValidationIssue } from '../../../schema/validator'
 import { fieldLabelKey } from '../../../i18n'
+import { fieldElementId } from '../../../schema/sectionStatus'
 import { useCvDocumentStore, useCvFieldValue } from '../../../store/cvDocument'
 import { FieldWrapper } from './FieldWrapper'
 import { textInputClass } from './inputStyles'
@@ -13,7 +13,7 @@ interface NumberFieldProps {
 }
 
 export function NumberField({ descriptor, path, errors }: NumberFieldProps) {
-  const id = useId()
+  const id = fieldElementId(path)
   const value = useCvFieldValue(path)
   const setValue = useCvDocumentStore((state) => state.setValue)
   const unsetValue = useCvDocumentStore((state) => state.unsetValue)

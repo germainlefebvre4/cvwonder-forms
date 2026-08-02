@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import type { IntegerFieldDescriptor, Path } from '../../../schema/types'
 import type { ValidationIssue } from '../../../schema/validator'
 import { fieldLabelKey } from '../../../i18n'
+import { fieldElementId } from '../../../schema/sectionStatus'
 import { useCvDocumentStore, useCvFieldValue } from '../../../store/cvDocument'
 import { FieldWrapper } from './FieldWrapper'
 
@@ -35,6 +36,7 @@ export function SliderField({ descriptor, path, errors }: SliderFieldProps) {
             <Slider.Range className="absolute h-full rounded-full bg-brand-500 dark:bg-brand-400" />
           </Slider.Track>
           <Slider.Thumb
+            id={fieldElementId(path)}
             className="block h-4 w-4 rounded-full bg-brand-600 shadow focus:outline-none focus:ring-2 focus:ring-brand-400 dark:bg-brand-400"
             aria-label={t(fieldLabelKey(descriptor.schemaPath))}
           />

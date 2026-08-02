@@ -36,6 +36,10 @@
   "validation.error.type": "Invalid value type",
   "validation.error.generic": "Invalid value",
 
+  "errorSummary.toggleLabel_one": "{{count}} error, show list",
+  "errorSummary.toggleLabel_other": "{{count}} errors, show list",
+  "errorSummary.entry": "entry {{index}}",
+
   "fields.company": "Company",
   "fields.company.name": "Name",
   "fields.company.logo": "Logo (file path)",

@@ -1,5 +1,5 @@
 import { isEmptyValue } from './pathUtils'
-import type { JsonObject } from './types'
+import type { JsonObject, Path } from './types'
 
 export type SectionContentStatus = 'empty' | 'filled'
 export type SectionStatus = SectionContentStatus | 'error'
@@ -7,6 +7,11 @@ export type SectionStatus = SectionContentStatus | 'error'
 /** DOM id of a top-level section's <section> element, shared between the form and the section nav. */
 export function sectionElementId(sectionKey: string): string {
   return `cv-section-${sectionKey}`
+}
+
+/** DOM id of a field's focusable control, shared between the form and the error summary's jump-to-field. */
+export function fieldElementId(path: Path): string {
+  return `cv-field-${path.join('-')}`
 }
 
 /** Whether a top-level section currently has any content, per the same rule the YAML serializer uses to decide what to emit. */

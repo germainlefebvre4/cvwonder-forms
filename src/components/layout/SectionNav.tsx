@@ -11,6 +11,7 @@ import {
 } from '../../schema/sectionStatus'
 import { useCvDocumentStore } from '../../store/cvDocument'
 import { useCvValidation } from '../../store/validation'
+import { ErrorSummary } from './ErrorSummary'
 
 const statusDotClass: Record<SectionStatus, string> = {
   empty: 'bg-neutral-300 dark:bg-neutral-600',
@@ -88,6 +89,9 @@ export function SectionNav() {
 
   return (
     <nav aria-label={t('nav.sections')} className="lg:sticky lg:top-6 lg:h-[calc(100vh-3rem)] lg:w-52 lg:shrink-0">
+      <div className="fixed right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-40 lg:static lg:right-auto lg:bottom-auto lg:z-auto lg:mb-3">
+        <ErrorSummary />
+      </div>
       <ul className="flex gap-2 overflow-x-auto pb-1 lg:h-full lg:flex-col lg:gap-1 lg:overflow-y-auto lg:overflow-x-visible lg:pb-0">
         {documentSections.map((section) => {
           const contentStatus = getSectionContentStatus(document_, section.key)

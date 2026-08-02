@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import type { ArrayFieldDescriptor, Path } from '../../../schema/types'
 import type { ValidationIssue } from '../../../schema/validator'
 import { buildDefaultValue } from '../../../schema/pathUtils'
+import { fieldElementId } from '../../../schema/sectionStatus'
 import { fieldLabelKey } from '../../../i18n'
 import { useCvDocumentStore, useCvFieldValue } from '../../../store/cvDocument'
 import { FieldNode } from '../FieldNode'
@@ -24,7 +25,11 @@ export function RepeatableObjectList({ descriptor, path, errors }: RepeatableObj
   const labelKey = fieldLabelKey(descriptor.schemaPath)
 
   return (
-    <fieldset className="flex flex-col gap-3">
+    <fieldset
+      id={fieldElementId(path)}
+      tabIndex={-1}
+      className="flex flex-col gap-3 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-400"
+    >
       <legend className="text-sm font-semibold text-neutral-800 dark:text-neutral-200">
         {t(labelKey)}
         {descriptor.required && (
