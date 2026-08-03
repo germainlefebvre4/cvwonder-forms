@@ -6,6 +6,7 @@
   "actions.remove": "Remove",
   "actions.moveUp": "Move up",
   "actions.moveDown": "Move down",
+  "actions.dragToReorder": "Drag to reorder",
   "actions.import": "Import YAML",
   "actions.export": "Export YAML",
 
