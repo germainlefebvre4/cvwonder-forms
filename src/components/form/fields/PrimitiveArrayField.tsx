@@ -23,6 +23,7 @@ import { fieldLabelKey } from '../../../i18n'
 import { fieldElementId } from '../../../schema/sectionStatus'
 import { useCvDocumentStore, useCvFieldValue } from '../../../store/cvDocument'
 import { useCvValidation } from '../../../store/validation'
+import { useFieldHighlight } from '../useFieldHighlight'
 import { FieldErrorList } from './FieldErrorList'
 import { addButtonClass, dragHandleClass, dragOverIndicatorClass, iconButtonClass, railClass, textInputClass } from './inputStyles'
 
@@ -97,6 +98,7 @@ export function PrimitiveArrayField({ descriptor, path, errors }: PrimitiveArray
   const moveItem = useCvDocumentStore((state) => state.moveItem)
   const labelKey = fieldLabelKey(descriptor.schemaPath)
   const [overId, setOverId] = useState<string | null>(null)
+  const highlight = useFieldHighlight(path)
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -121,6 +123,7 @@ export function PrimitiveArrayField({ descriptor, path, errors }: PrimitiveArray
       id={fieldElementId(path)}
       tabIndex={-1}
       className="flex flex-col gap-2 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-400"
+      {...highlight}
     >
       <legend className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
         {t(labelKey)}

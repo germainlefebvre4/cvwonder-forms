@@ -24,6 +24,7 @@ import { fieldElementId } from '../../../schema/sectionStatus'
 import { fieldLabelKey } from '../../../i18n'
 import { useCvDocumentStore, useCvFieldValue } from '../../../store/cvDocument'
 import { FieldNode } from '../FieldNode'
+import { useFieldHighlight } from '../useFieldHighlight'
 import { FieldErrorList } from './FieldErrorList'
 import { addButtonClass, dragHandleClass, dragOverIndicatorClass, iconButtonClass, railClass } from './inputStyles'
 
@@ -98,6 +99,7 @@ export function RepeatableObjectList({ descriptor, path, errors }: RepeatableObj
   const moveItem = useCvDocumentStore((state) => state.moveItem)
   const labelKey = fieldLabelKey(descriptor.schemaPath)
   const [overId, setOverId] = useState<string | null>(null)
+  const highlight = useFieldHighlight(path)
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -122,6 +124,7 @@ export function RepeatableObjectList({ descriptor, path, errors }: RepeatableObj
       id={fieldElementId(path)}
       tabIndex={-1}
       className="flex flex-col gap-3 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-400"
+      {...highlight}
     >
       <legend className="text-sm font-semibold text-neutral-800 dark:text-neutral-200">
         {t(labelKey)}

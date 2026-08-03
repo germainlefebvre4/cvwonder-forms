@@ -5,6 +5,7 @@ import type { ValidationIssue } from '../../../schema/validator'
 import { fieldLabelKey } from '../../../i18n'
 import { fieldElementId } from '../../../schema/sectionStatus'
 import { useCvDocumentStore, useCvFieldValue } from '../../../store/cvDocument'
+import { useFieldHighlight } from '../useFieldHighlight'
 import { FieldWrapper } from './FieldWrapper'
 
 interface SliderFieldProps {
@@ -17,12 +18,18 @@ export function SliderField({ descriptor, path, errors }: SliderFieldProps) {
   const { t } = useTranslation()
   const value = useCvFieldValue(path)
   const setValue = useCvDocumentStore((state) => state.setValue)
+  const highlight = useFieldHighlight(path)
   const minimum = descriptor.minimum ?? 0
   const maximum = descriptor.maximum ?? 100
   const current = typeof value === 'number' ? value : minimum
 
   return (
-    <FieldWrapper labelKey={fieldLabelKey(descriptor.schemaPath)} required={descriptor.required} errors={errors}>
+    <FieldWrapper
+      labelKey={fieldLabelKey(descriptor.schemaPath)}
+      required={descriptor.required}
+      errors={errors}
+      {...highlight}
+    >
       <div className="flex items-center gap-3">
         <Slider.Root
           className="relative flex h-5 w-full touch-none items-center"

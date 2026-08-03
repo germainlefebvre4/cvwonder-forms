@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { serializeToYaml } from './serialize'
+import { serializeToYaml, serializeToYamlWithRanges } from './serialize'
 import { parseYaml } from './parse'
 import { validateDocument } from '../schema/validator'
 
@@ -22,6 +22,50 @@ describe('serializeToYaml', () => {
       technicalSkills: { domains: [{ name: 'Backend', competencies: [{ name: 'Go', level: 0 }] }] },
     })
     expect(yaml).toContain('level: 0')
+  })
+})
+
+describe('serializeToYamlWithRanges', () => {
+  const document = {
+    person: { name: 'Jane Doe' },
+    career: [
+      { companyName: 'Acme', missions: [{ position: 'Dev', company: 'Acme' }] },
+      { companyName: 'Globex', missions: [{ position: 'Lead', company: 'Globex' }] },
+    ],
+  }
+
+  it('maps a top-level field to its line', () => {
+    const { yamlText, ranges } = serializeToYamlWithRanges(document)
+    const lines = yamlText.split('\n')
+    const range = ranges.get('career')
+    expect(range).toBeDefined()
+    expect(lines[range!.startLine - 1]).toBe('career:')
+  })
+
+  it('maps a nested object field to its line', () => {
+    const { yamlText, ranges } = serializeToYamlWithRanges(document)
+    const lines = yamlText.split('\n')
+    const range = ranges.get('person.name')
+    expect(range).toBeDefined()
+    expect(range!.startLine).toBe(range!.endLine)
+    expect(lines[range!.startLine - 1]).toContain('name: Jane Doe')
+  })
+
+  it('resolves a repeated key name to the line for its own array item', () => {
+    const { yamlText, ranges } = serializeToYamlWithRanges(document)
+    const lines = yamlText.split('\n')
+    const first = ranges.get('career.0.missions.0.company')
+    const second = ranges.get('career.1.missions.0.company')
+    expect(first).toBeDefined()
+    expect(second).toBeDefined()
+    expect(first!.startLine).not.toBe(second!.startLine)
+    expect(lines[first!.startLine - 1]).toContain('company: Acme')
+    expect(lines[second!.startLine - 1]).toContain('company: Globex')
+  })
+
+  it('omits a path with no rendered output', () => {
+    const { ranges } = serializeToYamlWithRanges({ person: { name: 'Jane Doe', email: '' } })
+    expect(ranges.has('person.email')).toBe(false)
   })
 })
 

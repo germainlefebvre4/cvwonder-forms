@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import type { ObjectFieldDescriptor, Path } from '../../../schema/types'
 import { fieldLabelKey } from '../../../i18n'
 import { FieldNode } from '../FieldNode'
+import { useFieldHighlight } from '../useFieldHighlight'
 
 interface ObjectGroupProps {
   descriptor: ObjectFieldDescriptor
@@ -11,8 +12,9 @@ interface ObjectGroupProps {
 
 export function ObjectGroup({ descriptor, path, hideLabel }: ObjectGroupProps) {
   const { t } = useTranslation()
+  const highlight = useFieldHighlight(path)
   return (
-    <fieldset className="flex flex-col gap-4">
+    <fieldset className="flex flex-col gap-4" {...highlight}>
       {!hideLabel && (
         <legend className="text-base font-semibold text-neutral-900 dark:text-neutral-100">
           {t(fieldLabelKey(descriptor.schemaPath))}

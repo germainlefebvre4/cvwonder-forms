@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useUiPrefsStore } from './store/uiPrefs'
 import { SchemaFormRenderer } from './components/form/SchemaFormRenderer'
+import { useFieldHighlightTracking } from './components/form/useFieldHighlightTracking'
 import { YamlPreview } from './components/preview/YamlPreview'
 import { ImportButton } from './components/io/ImportButton'
 import { ExportButton } from './components/io/ExportButton'
@@ -13,6 +14,8 @@ function App() {
   const { t, i18n } = useTranslation()
   const theme = useUiPrefsStore((state) => state.theme)
   const language = useUiPrefsStore((state) => state.language)
+
+  useFieldHighlightTracking()
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme

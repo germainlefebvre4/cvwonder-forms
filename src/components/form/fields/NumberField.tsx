@@ -3,6 +3,7 @@ import type { ValidationIssue } from '../../../schema/validator'
 import { fieldLabelKey } from '../../../i18n'
 import { fieldElementId } from '../../../schema/sectionStatus'
 import { useCvDocumentStore, useCvFieldValue } from '../../../store/cvDocument'
+import { useFieldHighlight } from '../useFieldHighlight'
 import { FieldWrapper } from './FieldWrapper'
 import { textInputClass } from './inputStyles'
 
@@ -17,6 +18,7 @@ export function NumberField({ descriptor, path, errors }: NumberFieldProps) {
   const value = useCvFieldValue(path)
   const setValue = useCvDocumentStore((state) => state.setValue)
   const unsetValue = useCvDocumentStore((state) => state.unsetValue)
+  const highlight = useFieldHighlight(path)
 
   return (
     <FieldWrapper
@@ -24,6 +26,7 @@ export function NumberField({ descriptor, path, errors }: NumberFieldProps) {
       required={descriptor.required}
       errors={errors}
       htmlFor={id}
+      {...highlight}
     >
       <input
         id={id}

@@ -9,12 +9,20 @@ interface FieldWrapperProps {
   errors?: ValidationIssue[]
   htmlFor?: string
   children: ReactNode
+  'data-field-path'?: string
 }
 
-export function FieldWrapper({ labelKey, required, errors, htmlFor, children }: FieldWrapperProps) {
+export function FieldWrapper({
+  labelKey,
+  required,
+  errors,
+  htmlFor,
+  children,
+  ...rest
+}: FieldWrapperProps) {
   const { t } = useTranslation()
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-1" {...rest}>
       <label htmlFor={htmlFor} className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
         {t(labelKey)}
         {required && (
