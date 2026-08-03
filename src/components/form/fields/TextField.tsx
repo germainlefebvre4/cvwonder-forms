@@ -30,7 +30,7 @@ export function TextField({ descriptor, path, errors }: TextFieldProps) {
         type={inputType}
         value={typeof value === 'string' ? value : ''}
         onChange={(event) => setValue(path, event.target.value)}
-        className={textInputClass}
+        className={textInputClass(Boolean(errors?.length))}
       />
     </FieldWrapper>
   )

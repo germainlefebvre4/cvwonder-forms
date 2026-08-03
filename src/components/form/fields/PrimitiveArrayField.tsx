@@ -4,6 +4,7 @@ import type { ValidationIssue } from '../../../schema/validator'
 import { fieldLabelKey } from '../../../i18n'
 import { fieldElementId } from '../../../schema/sectionStatus'
 import { useCvDocumentStore, useCvFieldValue } from '../../../store/cvDocument'
+import { useCvValidation } from '../../../store/validation'
 import { FieldErrorList } from './FieldErrorList'
 import { addButtonClass, iconButtonClass, textInputClass } from './inputStyles'
 
@@ -15,6 +16,7 @@ interface PrimitiveArrayFieldProps {
 
 export function PrimitiveArrayField({ descriptor, path, errors }: PrimitiveArrayFieldProps) {
   const { t } = useTranslation()
+  const { errorsByPath } = useCvValidation()
   const value = useCvFieldValue(path)
   const items = Array.isArray(value) ? value : []
   const setValue = useCvDocumentStore((state) => state.setValue)
@@ -43,7 +45,7 @@ export function PrimitiveArrayField({ descriptor, path, errors }: PrimitiveArray
             rows={2}
             value={typeof item === 'string' ? item : ''}
             onChange={(event) => setValue([...path, index], event.target.value)}
-            className={`${textInputClass} flex-1`}
+            className={`${textInputClass(Boolean(errorsByPath[[...path, index].join('.')]?.length))} flex-1`}
           />
           <div className="flex flex-col gap-1">
             <button

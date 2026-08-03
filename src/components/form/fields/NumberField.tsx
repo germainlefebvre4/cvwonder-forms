@@ -38,7 +38,7 @@ export function NumberField({ descriptor, path, errors }: NumberFieldProps) {
             setValue(path, Number(event.target.value))
           }
         }}
-        className={textInputClass}
+        className={textInputClass(Boolean(errors?.length))}
       />
     </FieldWrapper>
   )
