@@ -1,8 +1,9 @@
 name: Release Assets
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - '*'
 
 permissions:
   contents: write
@@ -13,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.release.tag_name }}
+          ref: ${{ github.ref_name }}
       - uses: actions/setup-node@v4
         with:
           node-version: 24
@@ -21,6 +22,6 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: zip -r dist.zip dist
-      - run: gh release upload "${{ github.event.release.tag_name }}" dist.zip --clobber
+      - run: gh release upload "${{ github.ref_name }}" dist.zip --clobber
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
