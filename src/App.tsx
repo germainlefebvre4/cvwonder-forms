@@ -4,6 +4,7 @@ import { useUiPrefsStore } from './store/uiPrefs'
 import { SchemaFormRenderer } from './components/form/SchemaFormRenderer'
 import { useFieldHighlightTracking } from './components/form/useFieldHighlightTracking'
 import { YamlPreview } from './components/preview/YamlPreview'
+import { CopyYamlButton } from './components/preview/CopyYamlButton'
 import { ImportButton } from './components/io/ImportButton'
 import { ExportButton } from './components/io/ExportButton'
 import { ThemeToggle } from './components/layout/ThemeToggle'
@@ -43,7 +44,10 @@ function App() {
         <SectionNav />
         <SchemaFormRenderer />
         <div className="lg:sticky lg:top-6 lg:h-[calc(100vh-3rem)] lg:self-start">
-          <h2 className="mb-2 text-sm font-semibold text-neutral-600 dark:text-neutral-400">{t('nav.preview')}</h2>
+          <div className="mb-2 flex items-center justify-between gap-3">
+            <h2 className="text-sm font-semibold text-neutral-600 dark:text-neutral-400">{t('nav.preview')}</h2>
+            <CopyYamlButton />
+          </div>
           <YamlPreview />
         </div>
       </main>

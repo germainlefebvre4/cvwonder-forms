@@ -9,6 +9,8 @@
   "actions.dragToReorder": "Glisser pour réorganiser",
   "actions.import": "Importer un YAML",
   "actions.export": "Exporter en YAML",
+  "actions.copy": "Copier",
+  "actions.copied": "Copié !",
 
   "nav.preview": "Aperçu YAML",
   "nav.sections": "Sections du formulaire",

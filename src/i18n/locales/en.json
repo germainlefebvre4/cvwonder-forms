@@ -9,6 +9,8 @@
   "actions.dragToReorder": "Drag to reorder",
   "actions.import": "Import YAML",
   "actions.export": "Export YAML",
+  "actions.copy": "Copy",
+  "actions.copied": "Copied!",
 
   "nav.preview": "YAML preview",
   "nav.sections": "Form sections",
