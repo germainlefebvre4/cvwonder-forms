@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/germainlefebvre4/cvwonder-forms/compare/v0.1.0...v0.2.0) (2026-08-05)
+
+
+### Features
+
+* Use Relative Asset Paths ([67d7fd9](https://github.com/germainlefebvre4/cvwonder-forms/commit/67d7fd9e01567c42c0d645f0666a86a39f07356e))
+
 ## [0.2.0](https://github.com/germainlefebvre4/cvwonder-forms/compare/cvwonder-forms-v0.1.0...cvwonder-forms-v0.2.0) (2026-08-05)
 
 
