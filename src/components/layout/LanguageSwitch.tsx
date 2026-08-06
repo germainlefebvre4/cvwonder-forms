@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useUiPrefsStore, type Language } from '../../store/uiPrefs'
 
 const itemClass =
-  'cursor-pointer rounded px-2 py-1 text-sm outline-none data-[highlighted]:bg-brand-100 dark:data-[highlighted]:bg-brand-950'
+  'relative cursor-pointer rounded py-1 pl-5 pr-2 text-sm outline-none data-[highlighted]:bg-brand-100 data-[state=checked]:font-semibold dark:data-[highlighted]:bg-brand-950'
 
 export function LanguageSwitch() {
   const { t } = useTranslation()
@@ -20,12 +20,18 @@ export function LanguageSwitch() {
         <Select.Icon>▾</Select.Icon>
       </Select.Trigger>
       <Select.Portal>
-        <Select.Content className="overflow-hidden rounded-md border border-neutral-200 bg-white shadow-md dark:border-neutral-700 dark:bg-neutral-900">
+        <Select.Content
+          position="popper"
+          sideOffset={4}
+          className="overflow-hidden rounded-md border border-neutral-200 bg-white shadow-md dark:border-neutral-700 dark:bg-neutral-900"
+        >
           <Select.Viewport className="p-1">
             <Select.Item value="fr" className={itemClass}>
+              <Select.ItemIndicator className="absolute left-1.5 inline-flex items-center">✓</Select.ItemIndicator>
               <Select.ItemText>{t('language.fr')}</Select.ItemText>
             </Select.Item>
             <Select.Item value="en" className={itemClass}>
+              <Select.ItemIndicator className="absolute left-1.5 inline-flex items-center">✓</Select.ItemIndicator>
               <Select.ItemText>{t('language.en')}</Select.ItemText>
             </Select.Item>
           </Select.Viewport>
