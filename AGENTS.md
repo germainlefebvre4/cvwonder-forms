@@ -6,7 +6,7 @@ This project aims to facilitate the writing of CV Wonder YAML files by human.
 
 CV Wonder repository is located at https://github.com/germainlefebvre4/cvwonder.
 
-The YAML schema for CV Wonder is located at https://raw.githubusercontent.com/germainlefebvre4/cvwonder/refs/heads/main/internal/validator/schema.json.
+The YAML schema for CV Wonder is vendored under `schemas/`, at a specific `cvwonder` Git tag rather than tracking `main`. `schemas/active-version.json` names the active version (e.g. `v0.10.1`), and `src/schema/activeSchema.ts` resolves it to the matching `schemas/cvwonder.<version>.json` file, consumed by both form rendering and validation. To pull a newer `cvwonder` release, run `npm run schema:update -- <tag>` (e.g. `npm run schema:update -- v0.10.2`), which fetches that tag's `schema.json` from `https://raw.githubusercontent.com/germainlefebvre4/cvwonder/refs/tags/<tag>/internal/validator/schema.json`, vendors it, and updates the active version — do not edit `schemas/*.json` or `active-version.json` by hand.
 
 ## Features
 

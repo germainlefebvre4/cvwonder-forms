@@ -1,4 +1,4 @@
-import cvSchema from '../../schemas/cvwonder.v0.10.1.json'
+import { activeSchema as cvSchema } from './activeSchema'
 import { buildDocumentSections } from './walker'
 
 export const documentSections = buildDocumentSections(cvSchema)

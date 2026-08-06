@@ -22,7 +22,7 @@
 
 ## 4. Repository configuration
 
-- [x] 4.1 Configure branch protection on `main` to require the PR-title-check status check before merging (via GitHub UI or `gh api`), so enforcement is not merely advisory
+- [ ] 4.1 Configure branch protection on `main` to require the PR-title-check status check before merging (via GitHub UI or `gh api`), so enforcement is not merely advisory (a "Default branch" ruleset exists but currently only enforces `deletion`/`non_fast_forward`, not a required status check on the PR title workflow - archived with this gap open, per user decision)
 - [x] 4.2 Confirm squash-merge remains the only enabled merge strategy (already configured) so no additional change is needed there
 
 ## 5. Rollout verification

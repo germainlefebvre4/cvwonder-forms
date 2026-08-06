@@ -1,6 +1,6 @@
 import Ajv, { type ErrorObject } from 'ajv'
 import addFormats from 'ajv-formats'
-import cvSchemaRaw from '../../schemas/cvwonder.v0.10.1.json'
+import { activeSchema as cvSchemaRaw } from './activeSchema'
 import type { JsonValue } from './types'
 
 // Compiled against ajv's default (2020-12) vocabulary rather than resolving the
