@@ -10,6 +10,7 @@ import { ExportButton } from './components/io/ExportButton'
 import { ThemeToggle } from './components/layout/ThemeToggle'
 import { LanguageSwitch } from './components/layout/LanguageSwitch'
 import { SectionNav } from './components/layout/SectionNav'
+import { activeSchemaVersion } from './schema'
 
 function App() {
   const { t, i18n } = useTranslation()
@@ -46,7 +47,18 @@ function App() {
         <div className="lg:sticky lg:top-6 lg:h-[calc(100vh-3rem)] lg:self-start">
           <div className="mb-2 flex items-center justify-between gap-3">
             <h2 className="text-sm font-semibold text-neutral-600 dark:text-neutral-400">{t('nav.preview')}</h2>
-            <CopyYamlButton />
+            <div className="flex items-center gap-3">
+              <a
+                href={`https://github.com/germainlefebvre4/cvwonder/blob/refs/tags/${activeSchemaVersion}/internal/validator/schema.json`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${t('nav.schemaVersionLabel')} ${activeSchemaVersion}`}
+                className="text-xs text-neutral-500 underline decoration-dotted underline-offset-2 hover:text-brand-600 dark:text-neutral-400 dark:hover:text-brand-400"
+              >
+                {activeSchemaVersion}
+              </a>
+              <CopyYamlButton />
+            </div>
           </div>
           <YamlPreview />
         </div>

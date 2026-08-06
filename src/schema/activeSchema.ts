@@ -13,4 +13,6 @@ if (!activeSchema) {
   throw new Error(`Active schema version "${activeVersion.version}" has no matching file in schemas/`)
 }
 
-export { activeSchema }
+const activeSchemaVersion = activeVersion.version
+
+export { activeSchema, activeSchemaVersion }

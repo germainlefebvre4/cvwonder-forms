@@ -13,6 +13,7 @@
   "actions.copied": "Copied!",
 
   "nav.preview": "YAML preview",
+  "nav.schemaVersionLabel": "Schema version",
   "nav.sections": "Form sections",
   "nav.sectionStatus.empty": "Empty section",
   "nav.sectionStatus.filled": "Filled section",

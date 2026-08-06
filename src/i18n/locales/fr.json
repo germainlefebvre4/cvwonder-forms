@@ -13,6 +13,7 @@
   "actions.copied": "Copié !",
 
   "nav.preview": "Aperçu YAML",
+  "nav.schemaVersionLabel": "Version du schéma",
   "nav.sections": "Sections du formulaire",
   "nav.sectionStatus.empty": "Section vide",
   "nav.sectionStatus.filled": "Section renseignée",
