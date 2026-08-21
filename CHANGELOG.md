@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.1](https://github.com/germainlefebvre4/cvwonder-forms/compare/v0.2.0...v0.2.1) (2026-08-21)
+
+
+### Bug Fixes
+
+* Add Schema Version Link ([#10](https://github.com/germainlefebvre4/cvwonder-forms/issues/10)) ([bba6a4f](https://github.com/germainlefebvre4/cvwonder-forms/commit/bba6a4fc584e67a8a757542cc0d800f7ff1e4d52))
+* Language Dropdown Overlap ([#12](https://github.com/germainlefebvre4/cvwonder-forms/issues/12)) ([e7cbdb1](https://github.com/germainlefebvre4/cvwonder-forms/commit/e7cbdb1a45dd3bc6e76c24820919182c0a4e3128))
+
 ## [0.2.0](https://github.com/germainlefebvre4/cvwonder-forms/compare/v0.1.0...v0.2.0) (2026-08-05)
 
 
